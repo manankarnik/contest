@@ -17,13 +17,43 @@
         <thead class="center">
           <tr>
             <th colspan="4">Questions ===></th>
-            <th colspan="2">A</th>
-            <th colspan="2">B</th>
-            <th colspan="2">C</th>
-            <th colspan="2">D</th>
-            <th colspan="2">E</th>
+            <th colspan="3">A</th>
+            <th colspan="3">B</th>
+            <th colspan="3">C</th>
+            <th colspan="3">D</th>
+            <th colspan="3">E</th>
           </tr>
         </thead>
+      </template>
+      <template v-slot:[`item.aAnswered`]="{ item }">
+        <v-simple-checkbox
+          v-model="item.aAnswered"
+          disabled
+        ></v-simple-checkbox>
+      </template>
+      <template v-slot:[`item.bAnswered`]="{ item }">
+        <v-simple-checkbox
+          v-model="item.bAnswered"
+          disabled
+        ></v-simple-checkbox>
+      </template>
+      <template v-slot:[`item.cAnswered`]="{ item }">
+        <v-simple-checkbox
+          v-model="item.cAnswered"
+          disabled
+        ></v-simple-checkbox>
+      </template>
+      <template v-slot:[`item.dAnswered`]="{ item }">
+        <v-simple-checkbox
+          v-model="item.dAnswered"
+          disabled
+        ></v-simple-checkbox>
+      </template>
+      <template v-slot:[`item.eAnswered`]="{ item }">
+        <v-simple-checkbox
+          v-model="item.eAnswered"
+          disabled
+        ></v-simple-checkbox>
       </template>
     </v-data-table>
   </div>
