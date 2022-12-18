@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import ScoreboardView from "../views/ScoreboardView.vue";
 import SubmissionsView from "../views/SubmissionsView.vue";
 
@@ -9,8 +8,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    redirect: "/scoreboard",
   },
   {
     path: "/scoreboard",
