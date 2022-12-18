@@ -2,7 +2,7 @@
   <div>
     <v-text-field
       v-model="search"
-      label="search"
+      label="Search"
       append-icon="mdi-magnify"
       hide-details
     >
