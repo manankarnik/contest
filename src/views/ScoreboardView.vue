@@ -8,7 +8,7 @@
     >
     </v-text-field>
     <v-data-table
-      :headers="headers"
+      :headers="computeHeaders"
       :items="items"
       :search="search"
       class="table"
@@ -22,6 +22,19 @@
             <th colspan="3">C</th>
             <th colspan="3">D</th>
             <th colspan="3">E</th>
+          </tr>
+          <tr>
+            <td><v-icon>mdi-filter</v-icon></td>
+            <td>
+              <v-select
+                v-model="name"
+                :items="items.map((item) => item.name)"
+                clearable
+                clear-icon="$clear"
+                >selection box
+              </v-select>
+            </td>
+            <td colspan="17"></td>
           </tr>
         </thead>
       </template>
@@ -64,13 +77,28 @@ export default {
   data() {
     return {
       search: "",
+      name: "",
       headers: [],
       items: [],
     };
   },
   mounted() {
-    this.headers = this.$store.getters.getScoreboardHeaders;
     this.items = this.$store.getters.getScoreboardItems;
+  },
+  methods: {
+    async updateHeaders() {
+      this.headers = await this.$store.getters.getScoreboardHeaders;
+      this.headers[1]["filter"] = (value) => {
+        if (!this.name) return true;
+        return value == this.name;
+      };
+    },
+  },
+  computed: {
+    computeHeaders() {
+      this.updateHeaders();
+      return this.headers;
+    },
   },
 };
 </script>
@@ -81,12 +109,10 @@ export default {
   white-space: pre-wrap;
 }
 
-.center tr th {
-  border-top: 1px solid lightgray;
-}
-
 .center tr th,
+.center tr td,
 .center + thead th {
+  border-top: 1px solid lightgray;
   border-left: 1px solid lightgray;
   text-align: center !important;
 }
