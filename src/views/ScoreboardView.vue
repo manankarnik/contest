@@ -1,6 +1,18 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="items" class="table">
+    <v-text-field
+      v-model="search"
+      label="search"
+      append-icon="mdi-magnify"
+      hide-details
+    >
+    </v-text-field>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      :search="search"
+      class="table"
+    >
       <template v-slot:header>
         <thead class="center">
           <tr>
@@ -21,6 +33,7 @@
 export default {
   data() {
     return {
+      search: "",
       headers: [],
       items: [],
     };
