@@ -48,33 +48,19 @@
           </tr>
         </thead>
       </template>
-      <template v-slot:[`item.aAnswered`]="{ item }">
+      <template
+        v-for="val in [
+          'aAnswered',
+          'bAnswered',
+          'cAnswered',
+          'dAnswered',
+          'eAnswered',
+        ]"
+        v-slot:[`item.`+val]="{ item }"
+      >
         <v-simple-checkbox
-          v-model="item.aAnswered"
-          disabled
-        ></v-simple-checkbox>
-      </template>
-      <template v-slot:[`item.bAnswered`]="{ item }">
-        <v-simple-checkbox
-          v-model="item.bAnswered"
-          disabled
-        ></v-simple-checkbox>
-      </template>
-      <template v-slot:[`item.cAnswered`]="{ item }">
-        <v-simple-checkbox
-          v-model="item.cAnswered"
-          disabled
-        ></v-simple-checkbox>
-      </template>
-      <template v-slot:[`item.dAnswered`]="{ item }">
-        <v-simple-checkbox
-          v-model="item.dAnswered"
-          disabled
-        ></v-simple-checkbox>
-      </template>
-      <template v-slot:[`item.eAnswered`]="{ item }">
-        <v-simple-checkbox
-          v-model="item.eAnswered"
+          :key="val"
+          v-model="item[val]"
           disabled
         ></v-simple-checkbox>
       </template>
