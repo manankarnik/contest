@@ -16,12 +16,13 @@
       <template v-slot:header>
         <thead class="center">
           <tr>
-            <th colspan="4">Questions ===></th>
-            <th colspan="4">A</th>
-            <th colspan="4">B</th>
-            <th colspan="4">C</th>
-            <th colspan="4">D</th>
-            <th colspan="4">E</th>
+            <th
+              v-for="data in ['Questions', 'A', 'B', 'C', 'D', 'E']"
+              :key="data"
+              colspan="4"
+            >
+              {{ data }}
+            </th>
           </tr>
           <tr>
             <td><v-icon>mdi-filter</v-icon></td>
