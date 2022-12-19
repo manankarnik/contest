@@ -5,6 +5,40 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    submissions: {
+      time: "",
+      status: "",
+      by: "",
+      title: "",
+      language: "",
+    },
+    questions: [
+      {
+        question: "a",
+        title: "Merge sort the given array: [43, 24, 16, 58, 20, 12, 15, 21]",
+        language: "Python",
+      },
+      {
+        question: "b",
+        title: "Create a CRUD application",
+        language: "React",
+      },
+      {
+        question: "c",
+        title: "Implement binary search tree data structure",
+        language: "C",
+      },
+      {
+        question: "d",
+        title: "Create tic-tac-toe application",
+        language: "Flutter",
+      },
+      {
+        question: "e",
+        title: "Fetch data from weather API",
+        language: "Javascript",
+      },
+    ],
     scoreboard: {
       headers: [
         { text: "Rank", value: "rank", align: "center" },
@@ -144,8 +178,14 @@ export default new Vuex.Store({
   getters: {
     getScoreboardHeaders: (state) => state.scoreboard.headers,
     getScoreboardItems: (state) => state.scoreboard.items,
+    getQuestions: (state) => state.questions,
+    getSubmissions: (state) => state.submissions,
   },
-  mutations: {},
+  mutations: {
+    submissions(state, payload) {
+      state.submissions = payload;
+    },
+  },
   actions: {},
   modules: {},
 });

@@ -73,9 +73,12 @@
           { key: 'dDetails', disabled: 'dAnswered' },
           { key: 'eDetails', disabled: 'eAnswered' },
         ]"
-        v-slot:[`item.`+val.key]="{ item }"
+        v-slot:[`item.`+val.key]="{ item, index }"
       >
-        <v-btn :key="val.key" color="primary" :disabled="!item[val.disabled]"
+        <v-btn
+          :key="val.key"
+          :color="item[val.disabled] ? 'primary' : 'error'"
+          @click="showDetails(index, val.disabled[0])"
           >View</v-btn
         >
       </template>
@@ -96,14 +99,31 @@ export default {
         { col: 18, answered: "" },
         { col: 22, answered: "" },
       ],
+      questions: [],
       headers: [],
       items: [],
     };
   },
   mounted() {
     this.items = this.$store.getters.getScoreboardItems;
+    this.questions = this.$store.getters.getQuestions;
   },
   methods: {
+    showDetails(index, questionNo) {
+      let question = this.questions.filter(
+        (item) => item.question == questionNo
+      )[0];
+      this.$store.commit("submissions", {
+        time: this.items[index][questionNo + "Time"],
+        status: this.items[index][questionNo + "Answered"]
+          ? "Answered"
+          : "Not answered",
+        by: this.items[index].name,
+        title: question.title,
+        language: question.language,
+      });
+      this.$router.push("/submissions");
+    },
     async updateHeaders() {
       this.headers = await this.$store.getters.getScoreboardHeaders;
       this.headers[1]["filter"] = (value) => {
