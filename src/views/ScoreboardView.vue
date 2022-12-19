@@ -34,7 +34,52 @@
                 >selection box
               </v-select>
             </td>
-            <td colspan="17"></td>
+            <td colspan="2"></td>
+            <td colspan="3">
+              <v-select
+                v-model="answers[0].answered"
+                :items="['Answered', 'Unanswered']"
+                clearable
+                clear-icon="$clear"
+                >selection box
+              </v-select>
+            </td>
+            <td colspan="3">
+              <v-select
+                v-model="answers[1].answered"
+                :items="['Answered', 'Unanswered']"
+                clearable
+                clear-icon="$clear"
+                >selection box
+              </v-select>
+            </td>
+            <td colspan="3">
+              <v-select
+                v-model="answers[2].answered"
+                :items="['Answered', 'Unanswered']"
+                clearable
+                clear-icon="$clear"
+                >selection box
+              </v-select>
+            </td>
+            <td colspan="3">
+              <v-select
+                v-model="answers[3].answered"
+                :items="['Answered', 'Unanswered']"
+                clearable
+                clear-icon="$clear"
+                >selection box
+              </v-select>
+            </td>
+            <td colspan="3">
+              <v-select
+                v-model="answers[4].answered"
+                :items="['Answered', 'Unanswered']"
+                clearable
+                clear-icon="$clear"
+                >selection box
+              </v-select>
+            </td>
           </tr>
         </thead>
       </template>
@@ -78,6 +123,13 @@ export default {
     return {
       search: "",
       name: "",
+      answers: [
+        { col: 6, answered: "" },
+        { col: 9, answered: "" },
+        { col: 12, answered: "" },
+        { col: 15, answered: "" },
+        { col: 18, answered: "" },
+      ],
       headers: [],
       items: [],
     };
@@ -92,6 +144,12 @@ export default {
         if (!this.name) return true;
         return value == this.name;
       };
+      for (let ans of this.answers) {
+        this.headers[ans.col]["filter"] = (value) => {
+          if (!ans.answered) return true;
+          return ans.answered == "Answered" ? value : !value;
+        };
+      }
     },
   },
   computed: {
