@@ -34,46 +34,11 @@
                 >selection box
               </v-select>
             </td>
-            <td colspan="2"></td>
-            <td colspan="3">
+            <td></td>
+            <td></td>
+            <td colspan="3" v-for="(ans, idx) in answers" :key="idx">
               <v-select
-                v-model="answers[0].answered"
-                :items="['Answered', 'Unanswered']"
-                clearable
-                clear-icon="$clear"
-                >selection box
-              </v-select>
-            </td>
-            <td colspan="3">
-              <v-select
-                v-model="answers[1].answered"
-                :items="['Answered', 'Unanswered']"
-                clearable
-                clear-icon="$clear"
-                >selection box
-              </v-select>
-            </td>
-            <td colspan="3">
-              <v-select
-                v-model="answers[2].answered"
-                :items="['Answered', 'Unanswered']"
-                clearable
-                clear-icon="$clear"
-                >selection box
-              </v-select>
-            </td>
-            <td colspan="3">
-              <v-select
-                v-model="answers[3].answered"
-                :items="['Answered', 'Unanswered']"
-                clearable
-                clear-icon="$clear"
-                >selection box
-              </v-select>
-            </td>
-            <td colspan="3">
-              <v-select
-                v-model="answers[4].answered"
+                v-model="ans.answered"
                 :items="['Answered', 'Unanswered']"
                 clearable
                 clear-icon="$clear"
