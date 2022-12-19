@@ -17,11 +17,11 @@
         <thead class="center">
           <tr>
             <th colspan="4">Questions ===></th>
-            <th colspan="3">A</th>
-            <th colspan="3">B</th>
-            <th colspan="3">C</th>
-            <th colspan="3">D</th>
-            <th colspan="3">E</th>
+            <th colspan="4">A</th>
+            <th colspan="4">B</th>
+            <th colspan="4">C</th>
+            <th colspan="4">D</th>
+            <th colspan="4">E</th>
           </tr>
           <tr>
             <td><v-icon>mdi-filter</v-icon></td>
@@ -36,7 +36,7 @@
             </td>
             <td></td>
             <td></td>
-            <td colspan="3" v-for="(ans, idx) in answers" :key="idx">
+            <td colspan="4" v-for="(ans, idx) in answers" :key="idx">
               <v-select
                 v-model="ans.answered"
                 :items="['Answered', 'Unanswered']"
@@ -64,6 +64,20 @@
           disabled
         ></v-simple-checkbox>
       </template>
+      <template
+        v-for="val in [
+          { key: 'aDetails', disabled: 'aAnswered' },
+          { key: 'bDetails', disabled: 'bAnswered' },
+          { key: 'cDetails', disabled: 'cAnswered' },
+          { key: 'dDetails', disabled: 'dAnswered' },
+          { key: 'eDetails', disabled: 'eAnswered' },
+        ]"
+        v-slot:[`item.`+val.key]="{ item }"
+      >
+        <v-btn :key="val.key" color="primary" :disabled="!item[val.disabled]"
+          >View</v-btn
+        >
+      </template>
     </v-data-table>
   </div>
 </template>
@@ -76,10 +90,10 @@ export default {
       name: "",
       answers: [
         { col: 6, answered: "" },
-        { col: 9, answered: "" },
-        { col: 12, answered: "" },
-        { col: 15, answered: "" },
+        { col: 10, answered: "" },
+        { col: 14, answered: "" },
         { col: 18, answered: "" },
+        { col: 22, answered: "" },
       ],
       headers: [],
       items: [],
