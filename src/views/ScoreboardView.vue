@@ -44,37 +44,26 @@
         </thead>
       </template>
       <template
-        v-for="val in [
-          'aAnswered',
-          'bAnswered',
-          'cAnswered',
-          'dAnswered',
-          'eAnswered',
-        ]"
-        v-slot:[`item.`+val]="{ item }"
+        v-for="question in questionsNos"
+        v-slot:[`item.`+question+`Answered`]="{ item }"
       >
         <v-simple-checkbox
-          :key="val"
-          v-model="item[val]"
+          :key="question"
+          v-model="item[question]"
           disabled
         ></v-simple-checkbox>
       </template>
       <template
-        v-for="val in [
-          { key: 'aDetails', disabled: 'aAnswered' },
-          { key: 'bDetails', disabled: 'bAnswered' },
-          { key: 'cDetails', disabled: 'cAnswered' },
-          { key: 'dDetails', disabled: 'dAnswered' },
-          { key: 'eDetails', disabled: 'eAnswered' },
-        ]"
-        v-slot:[`item.`+val.key]="{ item, index }"
+        v-for="question in questionsNos"
+        v-slot:[`item.`+question+`Details`]="{ item, index }"
       >
         <v-btn
-          :key="val.key"
-          :color="item[val.disabled] ? 'primary' : 'error'"
-          @click="showDetails(index, val.disabled[0])"
-          >View</v-btn
+          :key="question"
+          :color="item[question.concat('Answered')] ? 'primary' : 'error'"
+          @click="showDetails(index, question)"
         >
+          View
+        </v-btn>
       </template>
     </v-data-table>
   </div>
@@ -88,6 +77,7 @@ export default {
     return {
       search: "",
       name: "",
+      questionsNos: ["a", "b", "c", "d", "e"],
       answers: [
         { col: 6, answered: "" },
         { col: 10, answered: "" },
