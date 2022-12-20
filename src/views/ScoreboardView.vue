@@ -27,26 +27,19 @@
           </tr>
           <tr>
             <td><v-icon>mdi-filter</v-icon></td>
-            <td>
-              <v-select
-                v-model="name"
-                :items="items.map((item) => item.name)"
-                clearable
-                clear-icon="$clear"
-                >selection box
-              </v-select>
-            </td>
+            <filter-box-cell
+              @selection-changed="(event) => (name = event)"
+              :items="items.map((item) => item.name)"
+            />
             <td></td>
             <td></td>
-            <td colspan="4" v-for="(ans, idx) in answers" :key="idx">
-              <v-select
-                v-model="ans.answered"
-                :items="['Answered', 'Unanswered']"
-                clearable
-                clear-icon="$clear"
-                >selection box
-              </v-select>
-            </td>
+            <filter-box-cell
+              colspan="4"
+              v-for="(ans, idx) in answers"
+              :key="idx"
+              @selection-changed="(event) => (ans.answered = event)"
+              :items="['Answered', 'Unanswered']"
+            />
           </tr>
         </thead>
       </template>
@@ -89,6 +82,7 @@
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
+import FilterBoxCell from "@/components/FilterBoxCell.vue";
 export default {
   data() {
     return {
@@ -110,7 +104,7 @@ export default {
     this.items = this.$store.getters.getScoreboardItems;
     this.questions = this.$store.getters.getQuestions;
   },
-  components: { TitleBar },
+  components: { TitleBar, FilterBoxCell },
   methods: {
     showDetails(index, questionNo) {
       let question = this.questions.filter(
