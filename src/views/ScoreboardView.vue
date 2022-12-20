@@ -39,7 +39,7 @@
       >
         <v-simple-checkbox
           :key="question"
-          v-model="item[question]"
+          v-model="item[question.concat('Answered')]"
           disabled
         ></v-simple-checkbox>
       </template>
