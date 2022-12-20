@@ -1,5 +1,6 @@
 <template>
   <div>
+    <title-bar color="primary" title="Scoreboard" />
     <v-text-field
       v-model="search"
       label="Search"
@@ -87,6 +88,7 @@
 </template>
 
 <script>
+import TitleBar from "@/components/TitleBar.vue";
 export default {
   data() {
     return {
@@ -108,6 +110,7 @@ export default {
     this.items = this.$store.getters.getScoreboardItems;
     this.questions = this.$store.getters.getQuestions;
   },
+  components: { TitleBar },
   methods: {
     showDetails(index, questionNo) {
       let question = this.questions.filter(
