@@ -1,12 +1,7 @@
 <template>
   <div>
     <title-bar color="primary" title="Scoreboard" />
-    <v-text-field
-      v-model="search"
-      label="Search"
-      append-icon="mdi-magnify"
-      hide-details
-    >
+    <v-text-field v-model="search" label="Search" append-icon="mdi-magnify">
     </v-text-field>
     <v-data-table
       :headers="computeHeaders"
