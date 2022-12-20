@@ -21,13 +21,13 @@
             </th>
           </tr>
           <tr>
-            <td><v-icon>mdi-filter</v-icon></td>
+            <th><v-icon>mdi-filter</v-icon></th>
             <filter-box-cell
               @selection-changed="(event) => (name = event)"
               :items="items.map((item) => item.name)"
             />
-            <td></td>
-            <td></td>
+            <th></th>
+            <th></th>
             <filter-box-cell
               colspan="4"
               v-for="(ans, idx) in answers"

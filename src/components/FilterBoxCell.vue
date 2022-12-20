@@ -1,5 +1,5 @@
 <template>
-  <td :colspan="colspan">
+  <th :colspan="colspan">
     <v-select
       @change="selectionChanged"
       :items="items"
@@ -8,7 +8,7 @@
     >
       Filter box
     </v-select>
-  </td>
+  </th>
 </template>
 
 <script>
