@@ -1,12 +1,6 @@
 <template>
   <div>
-    <v-toolbar :color="getColor()">
-      <v-spacer></v-spacer>
-      <v-toolbar-title class="white--text">{{
-        submissions.title
-      }}</v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+    <title-bar :title="submissions.title" :color="getColor()" />
     <v-simple-table>
       <template v-slot:default>
         <tbody>
@@ -34,12 +28,14 @@
 </template>
 
 <script>
+import TitleBar from "@/components/TitleBar.vue";
 export default {
   data() {
     return {
       submissions: {},
     };
   },
+  components: { TitleBar },
   methods: {
     getColor() {
       return this.submissions.status == "Answered" ? "primary" : "error";
