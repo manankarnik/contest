@@ -43,6 +43,9 @@ export default {
   },
   mounted() {
     this.submissions = this.$store.getters.getSubmissions;
+    if (!this.submissions.title) {
+      this.$router.push("/scoreboard");
+    }
   },
 };
 </script>
