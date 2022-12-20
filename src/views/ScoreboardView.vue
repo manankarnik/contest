@@ -3,14 +3,9 @@
     <title-bar color="primary" title="Scoreboard" />
     <v-text-field v-model="search" label="Search" append-icon="mdi-magnify">
     </v-text-field>
-    <v-data-table
-      :headers="computeHeaders"
-      :items="items"
-      :search="search"
-      class="table"
-    >
+    <v-data-table :headers="computeHeaders" :items="items" :search="search">
       <template v-slot:header>
-        <thead class="center">
+        <thead>
           <tr>
             <th
               v-for="data in ['Questions', 'A', 'B', 'C', 'D', 'E']"
@@ -130,16 +125,13 @@ export default {
 </script>
 
 <style>
-.table tbody tr td {
-  border-left: 1px solid lightgray !important;
-  white-space: pre-wrap;
-}
-
-.center tr th,
-.center tr td,
-.center + thead th {
-  border-top: 1px solid lightgray;
+td,
+th {
   border-left: 1px solid lightgray;
+}
+thead tr:first-child th {
   text-align: center !important;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 </style>
