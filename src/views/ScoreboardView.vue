@@ -101,8 +101,8 @@ export default {
       });
       this.$router.push("/submissions");
     },
-    async updateHeaders() {
-      this.headers = await this.$store.getters.getScoreboardHeaders;
+    updateHeaders() {
+      this.headers = this.$store.getters.getScoreboardHeaders;
       this.headers[1]["filter"] = (value) => {
         if (!this.name) return true;
         return value == this.name;
